@@ -12,6 +12,7 @@ let circle;
 let state = "START";
 let title = "Microphone Visualization";
 let titleColor;
+let startButton;
 
 function setup() {
   primaryOrig = color(255, 0, 0); // Example primary color (red)
@@ -31,42 +32,47 @@ function setup() {
   amplitude = new p5.Amplitude(0.85);
 
   mic = new p5.AudioIn();
-  mic.start();
-  fft.setInput(mic);
-  amplitude.setInput(mic);
 
   waveform = fft.waveform();
   numPoints = waveform.length;
   circle = new Circle(radius, numPoints);
+
+  startButton = createButton("Start Visualization");
+  startButton.position(windowWidth / 2 - 50, windowHeight / 2 - 25);
+  startButton.mousePressed(startVisualization);
 }
 
 function startVisualization() {
   mic.start();
+  fft.setInput(mic);
+  amplitude.setInput(mic);
   startButton.hide();
-  stopButton.show();
   state = "PLAYING";
-}
-
-function stopVisualization() {
-  mic.stop();
-  stopButton.hide();
-  startButton.show();
-  state = "STOPPED";
 }
 
 function drawTitle() {
   titleColor.setAlpha(alpha(titleColor) - 5);
   push();
   fill(titleColor);
-
+  textAlign(CENTER, CENTER);
+  textSize(32);
+  text(title, windowWidth / 2, windowHeight / 4);
   pop();
 }
 
 function drawStart() {
-  push();
-  fill(secondary);
-
-  pop();
+  if (state === "START") {
+    push();
+    fill(secondary);
+    textAlign(CENTER, CENTER);
+    textSize(24);
+    text(
+      "Click 'Start Visualization' to begin",
+      windowWidth / 2,
+      windowHeight / 2
+    );
+    pop();
+  }
 }
 
 function drawPlaying() {
@@ -118,8 +124,11 @@ function drawPlaying() {
 }
 
 function draw() {
-  drawPlaying();
-  drawStart();
+  if (state === "PLAYING") {
+    drawPlaying();
+  } else {
+    drawStart();
+  }
 }
 
 class Circle {
