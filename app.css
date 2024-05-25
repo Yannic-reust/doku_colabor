@@ -42,7 +42,6 @@ nav {
 nav ul {
     width: calc(100vw - 2rem);
     display: flex;
-
     justify-content: flex-end;
     margin: 0px;
 
@@ -86,23 +85,6 @@ section#screenshots article img {
     object-fit: cover;
 }
 
-footer {
-    position: fixed;
-    bottom: 20px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding-top: 4rem;
-    z-index: 10;
-}
-
-footer a {
-    display: block;
-    width: 60px;
-    height: 52px;
-}
-
 .arrows path {
     stroke: #ffffff;
     fill: transparent;
@@ -111,4 +93,21 @@ footer a {
 
 .arrows path:hover {
     stroke-width: 4px;
+}
+
+.container {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 100px;
+}
+.image {
+    width: 100%;
+}
+.header-subsite {
+    background-color: black;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin-left: 10%;
 }
