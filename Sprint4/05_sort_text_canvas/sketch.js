@@ -7,10 +7,11 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(600, 400);
+  createCanvas(200, 200);
   img.resize(100, 100);
   noSmooth();
 
+  //pixelDensity(1);
   // Draw the image on the canvas initially
   image(img, 0, 0, width, height);
 
