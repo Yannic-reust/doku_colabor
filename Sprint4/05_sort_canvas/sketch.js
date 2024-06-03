@@ -1,4 +1,6 @@
 let img;
+let button;
+let shouldDraw = false;
 
 function preload() {
   img = loadImage("image.jpg");
@@ -6,27 +8,35 @@ function preload() {
 
 function setup() {
   createCanvas(500, 500);
-
   img.resize(100, 100);
-
   noSmooth();
+
+  // Create a button and attach the triggerDraw function to its mousePressed event
+  button = createButton("Process Image");
+  button.position(10, 10); // Position the button on the canvas
+  button.mousePressed(triggerDraw);
 }
 
 function draw() {
-  img.loadPixels();
+  if (shouldDraw) {
+    img.loadPixels();
 
-  for (let i = 0; i < 1000; i++) {
-    sortPixels();
+    for (let i = 0; i < 1000; i++) {
+      sortPixels();
+    }
+
+    img.updatePixels();
+    image(img, 0, 0, width, height);
   }
+}
 
-  img.updatePixels();
-
-  image(img, 0, 0, width, height);
+function triggerDraw() {
+  shouldDraw = true;
 }
 
 function sortPixels() {
-  const x = random(img.width - 1); // Ensuring we don't go out of bounds
-  const y = random(img.height);
+  const x = floor(random(img.width - 1)); // Ensuring we don't go out of bounds
+  const y = floor(random(img.height));
 
   const colorOne = img.get(x, y);
   const colorTwo = img.get(x + 1, y); // Compare with the next pixel to the right
