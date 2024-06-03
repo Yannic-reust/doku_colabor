@@ -25,6 +25,7 @@ function draw() {
 }
 
 function sortPixels() {
+  console.log("sorting");
   const x = random(img.width - 1); // Ensuring we don't go out of bounds
   const y = random(img.height);
 
