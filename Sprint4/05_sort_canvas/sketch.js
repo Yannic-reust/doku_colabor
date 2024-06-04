@@ -38,6 +38,7 @@ function triggerDraw() {
 }
 
 function sortPixels() {
+  console.log("sorting");
   const x = floor(random(width - 1)); // Ensuring we don't go out of bounds
   const y = floor(random(height));
 
