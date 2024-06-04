@@ -111,3 +111,10 @@ section#screenshots article img {
     width: 80%;
     margin-left: 10%;
 }
+
+.flex-container {
+    display: flex;
+}
+.image_flex {
+    width: 33%;
+}
